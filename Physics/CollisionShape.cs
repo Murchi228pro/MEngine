@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using GameMonoStudy.Engine.Geometry;
 using System.Linq;
 using System;
+using System.Collections.Generic;
 
 namespace Engine.Physics
 {
@@ -27,7 +28,7 @@ namespace Engine.Physics
         }
         public bool isColliding(CollisionShape otherShape)
         {
-            Vector2[] axes = getAxes(otherShape);
+            List<Vector2> axes = getAxes(otherShape);
 
             foreach (Vector2 axis in axes)
             {
@@ -50,8 +51,7 @@ namespace Engine.Physics
                 return CollideInfo.empty;
             }
 
-
-            Vector2[] axes = this.getAxes(otherShape);
+            List<Vector2> axes = this.getAxes(otherShape);
 
             float minOverlap = float.PositiveInfinity;
             Vector2 minAxis = Vector2.Zero;
@@ -81,14 +81,13 @@ namespace Engine.Physics
 
         private Vector2 getAxes(CollisionShape other)
         {
-            Vector2[] otherNormales = other.GetNormalAxes();
-            Vector2[] axes = thisNormales.Concat(otherNormales).ToArray();
-
-            Vector2 directionAxis = GeometryHelper.GetNormal(otherShape.CollidableShape.Center - this.CollidableShape.Center);
-            direction.Normalize();
+            List<Vector2> axes = new List<Vector2>();
+            axes.AddRange(thisNormales);
+            axes.AddRange(other.CollidableShape.GetNormalAxes());
+            Vector2 directionAxis = GeometryHelper.GetNormal(other.CollidableShape.Center - this.CollidableShape.Center);
+            directionAxis.Normalize();
             // Последним значением всегда будет перпендикуляр направлениям обоих объектов...
-            axes = axes.Concat(new Vector2[] { direction, }).ToArray();
-
+            axes.Add(directionAxis);
             return axes;
         }
     }
