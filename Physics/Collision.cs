@@ -1,7 +1,7 @@
 
 using Microsoft.Xna.Framework;
 
-namespace GameMonoStudy.Engine.Physics;
+namespace Engine.Physics;
 
 public class CollisionShape()
 {

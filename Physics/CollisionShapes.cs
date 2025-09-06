@@ -3,7 +3,7 @@ using GameMonoStudy.Engine.Geometry;
 using System.Linq;
 using System;
 
-namespace GameMonoStudy.Engine.Physics;
+namespace Engine.Physics;
 
 class RectangleCollisionShape : CollisionShape
 {

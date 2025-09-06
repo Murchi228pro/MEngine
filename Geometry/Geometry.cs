@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using System;
 
-namespace GameMonoStudy.Engine.Geometry
+namespace Engine.Geometry
 {
     public class GeometryHelper
     {

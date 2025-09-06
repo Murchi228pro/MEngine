@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
-namespace GameMonoStudy.Engine.Geometry;
+namespace Engine.Geometry;
 
 public class Rect
 {
@@ -44,5 +44,5 @@ public class Rect
 
         return vertices;
     }
-    
+    public Vector2[] 
 }

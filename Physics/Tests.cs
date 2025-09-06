@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 
 
-namespace GameMonoStudy.Engine.Tests
+namespace Engine.Tests
 {
     public class Entity
     {
