@@ -1,9 +1,10 @@
 using Microsoft.Xna.Framework;
 
-namespace Engine.Geometry
+namespace Engine.Geometry;
 
-public abstract class Shape {
-    
+public abstract class Shape
+{
+
     public Vector2 Center;
     public float Rotation;
 
