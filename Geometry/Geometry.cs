@@ -31,18 +31,5 @@ namespace Engine.Geometry
         {
             return new Vector2(-edge.Y, edge.X);
         }
-        public static (float, float) GetProjection(Vector2[] vertices, Vector2 axis)
-        {
-            float min = float.PositiveInfinity;
-            float max = float.NegativeInfinity;
-
-            for (int i = 0; i < vertices.Length; i++)
-            {
-                min = Math.Min(min, Vector2.Dot(vertices[i], axis));
-                max = Math.Max(max, Vector2.Dot(vertices[i], axis));
-            }
-
-            return (min, max);
-        }
     }
 }
