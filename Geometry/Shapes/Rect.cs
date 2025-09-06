@@ -11,7 +11,7 @@ public class Rect : Shape
     public float Rotation;
     public float Width;
     public float Height;
-    
+
 
     public Rect(Vector2 center, float width, float height, float rotation = 0)
     {
@@ -46,21 +46,22 @@ public class Rect : Shape
         return vertices;
     }
     public (float, float) GetProjection(Vector2 axis)
+    {
+        Vector2[] vertices = this.GetVertices();
+
+        float min = float.PositiveInfinity;
+        float max = float.NegativeInfinity;
+
+        for (int i = 0; i < vertices.Length; i++)
         {
-            Vector2[] vertices = this.GetVertices();
-
-            float min = float.PositiveInfinity;
-            float max = float.NegativeInfinity;
-
-            for (int i = 0; i < vertices.Length; i++)
-            {
-                min = Math.Min(min, Vector2.Dot(vertices[i], axis));
-                max = Math.Max(max, Vector2.Dot(vertices[i], axis));
-            }
-
-            return (min, max);
+            min = Math.Min(min, Vector2.Dot(vertices[i], axis));
+            max = Math.Max(max, Vector2.Dot(vertices[i], axis));
         }
-    public Vector2[] GetNormalAxes(){
+
+        return (min, max);
+    }
+    public Vector2[] GetNormalAxes()
+    {
 
         Vector2[] normals = new Vector2[4];
         Vector2[] vertices = this.GetVertices();
