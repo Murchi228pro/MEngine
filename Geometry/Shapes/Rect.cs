@@ -7,8 +7,7 @@ namespace Engine.Geometry;
 
 public class Rect : Shape
 {
-    public Vector2 Center;
-    public float Rotation;
+
     public float Width;
     public float Height;
 
@@ -45,7 +44,7 @@ public class Rect : Shape
 
         return vertices;
     }
-    public (float, float) GetProjection(Vector2 axis)
+    public override (float, float) GetProjection(Vector2 axis)
     {
         Vector2[] vertices = this.GetVertices();
 
@@ -60,20 +59,13 @@ public class Rect : Shape
 
         return (min, max);
     }
-    public Vector2[] GetNormalAxes()
+    public override Vector2[] GetNormalAxes()
     {
 
-        Vector2[] normals = new Vector2[4];
-        Vector2[] vertices = this.GetVertices();
-
-        for (int i = 0; i < 4; i++)
-        {
-            Vector2 p1 = vertices[i];
-            Vector2 p2 = vertices[(i + 1) % 4];
-
-            Vector2 normal = GeometryHelper.GetNormal(p1, p2);
-            normals[i] = normal;
-        }
+        Vector2[] normals = {
+            GeometryHelper.RotateAtX(1, Rotation), Vector2.Zero
+        };
+        normals[1] = GeometryHelper.GetNormal(normals[1]);
         return normals;
     }
 }

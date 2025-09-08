@@ -1,10 +1,14 @@
 
+using System.Collections.Generic;
+using System.Runtime.InteropServices.Marshalling;
+using Engine.Geometry;
 using Microsoft.Xna.Framework;
 
 namespace Engine.Physics;
 
 public class CollisionShape()
 {
+    public Shape CollidableShape;
     public virtual bool isColliding(CollisionShape c)
     {
         return false;
@@ -12,6 +16,9 @@ public class CollisionShape()
     public virtual CollideInfo GetCollideInfo(CollisionShape c)
     {
         return CollideInfo.empty;
+    }
+    protected List<Vector2> GetAxes() {
+        return new List<Vector2>();
     }
 }
 

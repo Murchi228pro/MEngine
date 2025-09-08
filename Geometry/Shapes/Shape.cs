@@ -1,3 +1,5 @@
+using System;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 
 namespace Engine.Geometry;
@@ -10,5 +12,7 @@ public abstract class Shape
 
     public abstract (float, float) GetProjection(Vector2 axis);
 
-    public abstract GetNormalAxes();
+    public abstract Vector2[] GetNormalAxes();
+
+
 }

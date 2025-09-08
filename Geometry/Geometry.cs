@@ -5,22 +5,7 @@ namespace Engine.Geometry
 {
     public class GeometryHelper
     {
-        
-        public static Vector2[] GetNormals(Vector2[] vertices)
-        {
-            Vector2[] normals = new Vector2[4];
 
-            for (int i = 0; i < 4; i++)
-            {
-                Vector2 p1 = vertices[i];
-                Vector2 p2 = vertices[(i + 1) % 4];
-
-                Vector2 normal = GetNormal(p1, p2);
-                normals[i] = normal;
-            }
-
-            return normals;
-        }
         public static Vector2 GetNormal(Vector2 point1, Vector2 point2)
         {
             Vector2 edge = point2 - point1;
@@ -29,7 +14,28 @@ namespace Engine.Geometry
         }
         public static Vector2 GetNormal(Vector2 edge)
         {
-            return new Vector2(-edge.Y, edge.X);
+            Vector2 v = new Vector2(-edge.Y, edge.X);
+            v.Normalize();
+            return v;
+        }
+
+        public static Vector2 RotateAtX(float X, float angle)
+        {
+            float rotatedX = (float)Math.Cos(angle) * X;
+            float rotatedY = (float)Math.Sin(angle) * X;
+            return new Vector2(rotatedX, rotatedY);
+        }
+        public static Vector2 RotateAtY(float Y, float angle)
+        {
+            float rotatedX = -(float)Math.Sin(angle) * Y;
+            float rotatedY = (float)Math.Cos(angle) * Y;
+            return new Vector2(rotatedX, rotatedY);
+        }
+        public static Vector2 Rotate(Vector2 pos, float angle)
+        {
+            Vector2 RotatedX = RotateAtX(pos.X, angle);
+            Vector2 RotatedY = RotateAtY(pos.Y, angle);
+            return new Vector2(RotatedX.X + RotatedY.X, RotatedX.Y + RotatedY.Y);
         }
     }
 }
