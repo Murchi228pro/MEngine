@@ -63,9 +63,9 @@ public class Rect : Shape
     {
 
         Vector2[] normals = {
-            GeometryHelper.RotateAtX(1, Rotation), Vector2.Zero
+            GeometryHelper.RotateAtX(1, Rotation),
+            GeometryHelper.RotateAtY(1, Rotation)
         };
-        normals[1] = GeometryHelper.GetNormal(normals[1]);
         return normals;
     }
 }

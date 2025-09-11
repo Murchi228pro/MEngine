@@ -37,5 +37,12 @@ namespace Engine.Geometry
             Vector2 RotatedY = RotateAtY(pos.Y, angle);
             return new Vector2(RotatedX.X + RotatedY.X, RotatedX.Y + RotatedY.Y);
         }
+        public static Vector2 MirrorVector(Vector2 current, Vector2 axis)
+        {
+            Vector2 mirroredAtX = new Vector2(current.X, -current.Y);
+            double mirrorAngle = Math.Atan2(mirroredAtX.Y, mirroredAtX.X) + Math.Atan2(axis.Y, axis.X);
+            Vector2 mirroredVector = Rotate(current, (float)mirrorAngle);
+            return mirroredVector;
+        }
     }
 }

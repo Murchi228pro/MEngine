@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -29,7 +30,8 @@ public class Draw
             (endPos.X, endPos.Y) = (endPos.Y, endPos.X);
             atY = true;
         }
-        if (endPos.X < startPos.X) {
+        if (endPos.X < startPos.X)
+        {
             (startPos, endPos) = (endPos, startPos);
         }
 
@@ -50,10 +52,20 @@ public class Draw
             }
         }
 
-        ;
     }
     public void DrawLine(SpriteBatch spriteBatch, Vector2 startPos, Vector2 endPos)
     {
         this.DrawLine(spriteBatch, startPos, endPos, Color.White);
     }
+
+    public void DrawCircle(SpriteBatch spriteBatch, Vector2 position, float radius)
+    {
+        for (float angle = 0; angle < 365; angle += 5.5f)
+        {
+            float x = (float)Math.Cos(angle) * radius;
+            float y = (float)Math.Sin(angle) * radius;
+            DrawPixel(spriteBatch, position + new Vector2(x, y));
+        }
+    }
+    
 }
